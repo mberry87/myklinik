@@ -13,7 +13,7 @@ class Dokter extends Model
 
     protected $fillable = [
         'kode',
-        'nama',
+        'nama_dokter',
         'tarif'
     ];
 }

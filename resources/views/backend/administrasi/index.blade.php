@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Dokter')
+@section('title', 'Administrasi')
 
 @section('breadcrumb')
     <div class="row mb-2">
         <div class="col col-sm-6">
-            <h4 class="m-0">Dokter</h4>
+            <h4 class="m-0">Administrasi</h4>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Dokter</li>
+                <li class="breadcrumb-item active">Administrasi</li>
             </ol>
         </div>
     </div>
@@ -29,32 +29,33 @@
                     <h5 class="m-0">Tabel Data</h5>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('dokter.create') }}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i>
+                    <a href="{{ route('administrasi.create') }}" class="btn btn-primary btn-sm mb-3"><i
+                            class="fa fa-plus"></i>
                         Tambah</a>
                     <div class="table-responsive">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Dokter</th>
-                                    <th>Nama Dokter</th>
+                                    <th>Kode Administrasi</th>
+                                    <th>Nama Administrasi</th>
                                     <th>Tarif</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dokter as $data)
+                                @foreach ($administrasi as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->kode }}</td>
-                                        <td>{{ $data->nama_dokter }}</td>
+                                        <td>{{ $data->nama_administrasi }}</td>
                                         <td>{{ $data->tarif }}</td>
                                         <td>
-                                            <a href="{{ route('dokter.edit', $data) }}" class="btn btn-primary btn-sm"><i
-                                                    class="fa fa-pen"></i>
+                                            <a href="{{ route('administrasi.edit', $data) }}"
+                                                class="btn btn-primary btn-sm"><i class="fa fa-pen"></i>
                                                 Edit</a>
                                             <!-- Gunakan formulir untuk metode DELETE -->
-                                            <form action="{{ route('dokter.destroy', $data) }}" method="POST"
+                                            <form action="{{ route('administrasi.destroy', $data) }}" method="POST"
                                                 style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')

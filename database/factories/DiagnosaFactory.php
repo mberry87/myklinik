@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Poli>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Diagnosa>
  */
-class PoliFactory extends Factory
+class DiagnosaFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,9 @@ class PoliFactory extends Factory
     public function definition()
     {
         return [
-            'nama_poli' => fake()->name(),
-            'kode' => fake()->numerify('Poli-####'),
+            'kode' => fake()->numerify('Dga-####'),
+            'nama_diagnosa' => fake()->name(),
+            'tarif' => fake()->randomNumber(5, True),
         ];
     }
 }

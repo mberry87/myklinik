@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokter;
+use App\Models\Penunjang;
 use Illuminate\Http\Request;
 
-class DokterController extends Controller
+class PenunjangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class DokterController extends Controller
     public function index()
     {
         // hubungkan data migration
-        $dokter = Dokter::all();
+        $penunjang = Penunjang::all();
 
-        return view('backend.dokter.index', compact('dokter'));
+        return view('backend.penunjang.index', compact('penunjang'));
     }
 
     /**
@@ -27,7 +27,7 @@ class DokterController extends Controller
      */
     public function create()
     {
-        return view('backend.dokter.create');
+        return view('backend.penunjang.create');
     }
 
     /**
@@ -40,13 +40,14 @@ class DokterController extends Controller
     {
         $validatedData = $request->validate([
             'kode' => 'required',
-            'nama_dokter' => 'required',
-            'tarif' => 'required'
+            'nama_penunjang' => 'required',
+            'harga_modal' => 'required',
+            'harga_jual' => 'required',
         ]);
 
-        Dokter::create($validatedData);
+        Penunjang::create($validatedData);
 
-        return redirect()->route('dokter.index')->with('success', 'Data dokter berhasil ditambah.');
+        return redirect()->route('penunjang.index')->with('success', 'Data penunjang berhasil ditambah.');
     }
 
     /**
@@ -68,14 +69,14 @@ class DokterController extends Controller
      */
     public function edit($id)
     {
-        $dokter = Dokter::find($id);
+        $penunjang = Penunjang::find($id);
 
-        if (!$dokter) {
+        if (!$penunjang) {
             // Jika pegawai dengan ID yang diberikan tidak ditemukan,
             abort(404);
         }
 
-        return view('backend.dokter.edit', compact('dokter'));
+        return view('backend.penunjang.edit', compact('penunjang'));
     }
 
     /**
@@ -87,26 +88,29 @@ class DokterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dokter = Dokter::find($id);
+        $penunjang = Penunjang::find($id);
 
-        if (!$dokter) {
+        if (!$penunjang) {
             // Jika pegawai dengan ID yang diberikan tidak ditemukan,
             abort(404);
         }
 
         $request->validate([
             'kode' => 'required',
-            'nama_dokter' => 'required',
-            'tarif' => 'required',
+            'nama_penunjang' => 'required',
+            'harga_modal' => 'required',
+            'harga_jual' => 'required'
 
         ]);
 
-        $dokter->kode = $request->kode;
-        $dokter->nama_dokter = $request->nama_dokter;
-        $dokter->tarif = $request->tarif;
-        $dokter->save();
+        $penunjang->kode = $request->kode;
+        $penunjang->nama_penunjang = $request->nama_penunjang;
+        $penunjang->harga_modal = $request->harga_modal;
+        $penunjang->harga_jual = $request->harga_jual;
 
-        return redirect()->route('dokter.index')->with('success', 'dokter berhasil diperbarui.');
+        $penunjang->save();
+
+        return redirect()->route('penunjang.index')->with('success', 'penunjang berhasil diperbarui.');
     }
 
     /**
@@ -117,9 +121,9 @@ class DokterController extends Controller
      */
     public function destroy($id)
     {
-        $dokter = Dokter::find($id);
-        $dokter->delete();
+        $penunjang = Penunjang::find($id);
+        $penunjang->delete();
 
-        return redirect()->route('dokter.index')->with('success', 'Data Dokter berhasil dihapus.');
+        return redirect()->route('penunjang.index')->with('success', 'Data penunjang berhasil dihapus.');
     }
 }

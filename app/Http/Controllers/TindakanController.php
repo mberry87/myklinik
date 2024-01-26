@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokter;
+use App\Models\Tindakan;
 use Illuminate\Http\Request;
 
-class DokterController extends Controller
+class TindakanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class DokterController extends Controller
     public function index()
     {
         // hubungkan data migration
-        $dokter = Dokter::all();
+        $tindakan = Tindakan::all();
 
-        return view('backend.dokter.index', compact('dokter'));
+        return view('backend.tindakan.index', compact('tindakan'));
     }
 
     /**
@@ -27,7 +27,7 @@ class DokterController extends Controller
      */
     public function create()
     {
-        return view('backend.dokter.create');
+        return view('backend.tindakan.create');
     }
 
     /**
@@ -40,13 +40,13 @@ class DokterController extends Controller
     {
         $validatedData = $request->validate([
             'kode' => 'required',
-            'nama_dokter' => 'required',
+            'nama_tindakan' => 'required',
             'tarif' => 'required'
         ]);
 
-        Dokter::create($validatedData);
+        Tindakan::create($validatedData);
 
-        return redirect()->route('dokter.index')->with('success', 'Data dokter berhasil ditambah.');
+        return redirect()->route('tindakan.index')->with('success', 'Data tindakan berhasil ditambah.');
     }
 
     /**
@@ -68,14 +68,14 @@ class DokterController extends Controller
      */
     public function edit($id)
     {
-        $dokter = Dokter::find($id);
+        $tindakan = Tindakan::find($id);
 
-        if (!$dokter) {
+        if (!$tindakan) {
             // Jika pegawai dengan ID yang diberikan tidak ditemukan,
             abort(404);
         }
 
-        return view('backend.dokter.edit', compact('dokter'));
+        return view('backend.tindakan.edit', compact('tindakan'));
     }
 
     /**
@@ -87,26 +87,26 @@ class DokterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dokter = Dokter::find($id);
+        $tindakan = Tindakan::find($id);
 
-        if (!$dokter) {
+        if (!$tindakan) {
             // Jika pegawai dengan ID yang diberikan tidak ditemukan,
             abort(404);
         }
 
         $request->validate([
             'kode' => 'required',
-            'nama_dokter' => 'required',
+            'nama_tindakan' => 'required',
             'tarif' => 'required',
 
         ]);
 
-        $dokter->kode = $request->kode;
-        $dokter->nama_dokter = $request->nama_dokter;
-        $dokter->tarif = $request->tarif;
-        $dokter->save();
+        $tindakan->kode = $request->kode;
+        $tindakan->nama_tindakan = $request->nama_tindakan;
+        $tindakan->tarif = $request->tarif;
+        $tindakan->save();
 
-        return redirect()->route('dokter.index')->with('success', 'dokter berhasil diperbarui.');
+        return redirect()->route('tindakan.index')->with('success', 'tindakan berhasil diperbarui.');
     }
 
     /**
@@ -117,9 +117,9 @@ class DokterController extends Controller
      */
     public function destroy($id)
     {
-        $dokter = Dokter::find($id);
-        $dokter->delete();
+        $tindakan = Tindakan::find($id);
+        $tindakan->delete();
 
-        return redirect()->route('dokter.index')->with('success', 'Data Dokter berhasil dihapus.');
+        return redirect()->route('tindakan.index')->with('success', 'Data tindakan berhasil dihapus.');
     }
 }

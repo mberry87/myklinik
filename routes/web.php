@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\AdministrasiController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DashboardCotroller;
+use App\Http\Controllers\DiagnosaController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PenunjangController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\TindakanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -64,10 +68,39 @@ Route::middleware('islogin')->group(function () {
 
     Route::get('dokter', [DokterController::class, 'index'])->name('dokter.index');
     Route::get('create/dokter', [DokterController::class, 'create'])->name('dokter.create');
-    Route::post('poli', [DokterController::class, 'store'])->name('dokter.store');
+    Route::post('dokter', [DokterController::class, 'store'])->name('dokter.store');
     Route::get('dokter/{id}/edit', [DokterController::class, 'edit'])->name('dokter.edit');
     Route::put('dokter/{id}', [DokterController::class, 'update'])->name('dokter.update');
     Route::delete('dokter/{id}', [DokterController::class, 'destroy'])->name('dokter.destroy');
+
+    Route::get('tindakan', [TindakanController::class, 'index'])->name('tindakan.index');
+    Route::get('create/tindakan', [TindakanController::class, 'create'])->name('tindakan.create');
+    Route::post('tindakan', [TindakanController::class, 'store'])->name('tindakan.store');
+    Route::get('tindakan/{id}/edit', [TindakanController::class, 'edit'])->name('tindakan.edit');
+    Route::put('tindakan/{id}', [TindakanController::class, 'update'])->name('tindakan.update');
+    Route::delete('tindakan/{id}', [TindakanController::class, 'destroy'])->name('tindakan.destroy');
+
+    Route::get('diagnosa', [DiagnosaController::class, 'index'])->name('diagnosa.index');
+    Route::get('create/diagnosa', [DiagnosaController::class, 'create'])->name('diagnosa.create');
+    Route::post('diagnosa', [DiagnosaController::class, 'store'])->name('diagnosa.store');
+    Route::get('diagnosa/{id}/edit', [DiagnosaController::class, 'edit'])->name('diagnosa.edit');
+    Route::put('diagnosa/{id}', [DiagnosaController::class, 'update'])->name('diagnosa.update');
+    Route::delete('diagnosa/{id}', [DiagnosaController::class, 'destroy'])->name('diagnosa.destroy');
+
+    Route::get('administrasi', [AdministrasiController::class, 'index'])->name('administrasi.index');
+    Route::get('create/administrasi', [AdministrasiController::class, 'create'])->name('administrasi.create');
+    Route::post('administrasi', [AdministrasiController::class, 'store'])->name('administrasi.store');
+    Route::get('administrasi/{id}/edit', [AdministrasiController::class, 'edit'])->name('administrasi.edit');
+    Route::put('administrasi/{id}', [AdministrasiController::class, 'update'])->name('administrasi.update');
+    Route::delete('administrasi/{id}', [AdministrasiController::class, 'destroy'])->name('administrasi.destroy');
+
+    Route::get('penunjang', [PenunjangController::class, 'index'])->name('penunjang.index');
+    Route::get('create/penunjang', [PenunjangController::class, 'create'])->name('penunjang.create');
+    Route::post('penunjang', [PenunjangController::class, 'store'])->name('penunjang.store');
+    Route::get('penunjang/{id}/edit', [PenunjangController::class, 'edit'])->name('penunjang.edit');
+    Route::put('penunjang/{id}', [PenunjangController::class, 'update'])->name('penunjang.update');
+    Route::delete('penunjang/{id}', [PenunjangController::class, 'destroy'])->name('penunjang.destroy');
+
 
     // profil
     Route::get('profil', [ProfilController::class, 'index'])->name('profil.index');

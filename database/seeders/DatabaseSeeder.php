@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
             PegawaiSeeder::class,
             UserSeeder::class,
             PoliSeeder::class,
+            TindakanSeeder::class,
+            DiagnosaSeeder::class,
+            AdministrasiSeeder::class,
+            PenunjangSeeder::class,
         ]);
     }
 }

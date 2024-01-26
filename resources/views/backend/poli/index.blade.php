@@ -46,7 +46,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->kode }}</td>
-                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->nama_poli }}</td>
                                         <td>
                                             <a href="{{ route('poli.edit', $data) }}" class="btn btn-primary btn-sm"><i
                                                     class="fa fa-pen"></i>

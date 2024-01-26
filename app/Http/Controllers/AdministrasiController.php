@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokter;
+use App\Models\Administrasi;
 use Illuminate\Http\Request;
 
-class DokterController extends Controller
+class AdministrasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class DokterController extends Controller
     public function index()
     {
         // hubungkan data migration
-        $dokter = Dokter::all();
+        $administrasi = Administrasi::all();
 
-        return view('backend.dokter.index', compact('dokter'));
+        return view('backend.administrasi.index', compact('administrasi'));
     }
 
     /**
@@ -27,7 +27,7 @@ class DokterController extends Controller
      */
     public function create()
     {
-        return view('backend.dokter.create');
+        return view('backend.administrasi.create');
     }
 
     /**
@@ -40,13 +40,13 @@ class DokterController extends Controller
     {
         $validatedData = $request->validate([
             'kode' => 'required',
-            'nama_dokter' => 'required',
+            'nama_administrasi' => 'required',
             'tarif' => 'required'
         ]);
 
-        Dokter::create($validatedData);
+        Administrasi::create($validatedData);
 
-        return redirect()->route('dokter.index')->with('success', 'Data dokter berhasil ditambah.');
+        return redirect()->route('administrasi.index')->with('success', 'Data administrasi berhasil ditambah.');
     }
 
     /**
@@ -68,14 +68,14 @@ class DokterController extends Controller
      */
     public function edit($id)
     {
-        $dokter = Dokter::find($id);
+        $administrasi = Administrasi::find($id);
 
-        if (!$dokter) {
+        if (!$administrasi) {
             // Jika pegawai dengan ID yang diberikan tidak ditemukan,
             abort(404);
         }
 
-        return view('backend.dokter.edit', compact('dokter'));
+        return view('backend.administrasi.edit', compact('administrasi'));
     }
 
     /**
@@ -87,26 +87,26 @@ class DokterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dokter = Dokter::find($id);
+        $administrasi = Administrasi::find($id);
 
-        if (!$dokter) {
+        if (!$administrasi) {
             // Jika pegawai dengan ID yang diberikan tidak ditemukan,
             abort(404);
         }
 
         $request->validate([
             'kode' => 'required',
-            'nama_dokter' => 'required',
+            'nama_administrasi' => 'required',
             'tarif' => 'required',
 
         ]);
 
-        $dokter->kode = $request->kode;
-        $dokter->nama_dokter = $request->nama_dokter;
-        $dokter->tarif = $request->tarif;
-        $dokter->save();
+        $administrasi->kode = $request->kode;
+        $administrasi->nama_administrasi = $request->nama_administrasi;
+        $administrasi->tarif = $request->tarif;
+        $administrasi->save();
 
-        return redirect()->route('dokter.index')->with('success', 'dokter berhasil diperbarui.');
+        return redirect()->route('administrasi.index')->with('success', 'administrasi berhasil diperbarui.');
     }
 
     /**
@@ -117,9 +117,9 @@ class DokterController extends Controller
      */
     public function destroy($id)
     {
-        $dokter = Dokter::find($id);
-        $dokter->delete();
+        $administrasi = Administrasi::find($id);
+        $administrasi->delete();
 
-        return redirect()->route('dokter.index')->with('success', 'Data Dokter berhasil dihapus.');
+        return redirect()->route('administrasi.index')->with('success', 'Data administrasi berhasil dihapus.');
     }
 }
