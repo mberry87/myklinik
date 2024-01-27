@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokter;
+use App\Models\Diagnosa;
 use Illuminate\Http\Request;
 
-class DokterController extends Controller
+class DiagnosaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class DokterController extends Controller
     public function index()
     {
         // hubungkan data migration
-        $dokter = Dokter::all();
+        $diagnosa = Diagnosa::all();
 
-        return view('backend.dokter.index', compact('dokter'));
+        return view('backend.diagnosa.index', compact('diagnosa'));
     }
 
     /**
@@ -27,8 +27,9 @@ class DokterController extends Controller
      */
     public function create()
     {
-        return view('backend.dokter.create');
+        return view('backend.diagnosa.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,19 +41,19 @@ class DokterController extends Controller
     {
         $validatedData = $request->validate([
             'kode' => 'required',
-            'nama_dokter' => 'required',
+            'nama_diagnosa' => 'required',
             'tarif' => 'required'
         ]);
 
-        Dokter::create($validatedData);
+        Diagnosa::create($validatedData);
 
-        return redirect()->route('dokter.index')->with('success', 'Data dokter berhasil ditambah.');
+        return redirect()->route('diagnosa.index')->with('success', 'Data diagnosa berhasil ditambah.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Diagnosa  $diagnosa
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,63 +64,63 @@ class DokterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Diagnosa  $diagnosa
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $dokter = Dokter::find($id);
+        $diagnosa = Diagnosa::find($id);
 
-        if (!$dokter) {
+        if (!$diagnosa) {
             // Jika pegawai dengan ID yang diberikan tidak ditemukan,
             abort(404);
         }
 
-        return view('backend.dokter.edit', compact('dokter'));
+        return view('backend.diagnosa.edit', compact('diagnosa'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Diagnosa  $diagnosa
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $dokter = Dokter::find($id);
+        $diagnosa = Diagnosa::find($id);
 
-        if (!$dokter) {
+        if (!$diagnosa) {
             // Jika pegawai dengan ID yang diberikan tidak ditemukan,
             abort(404);
         }
 
         $request->validate([
             'kode' => 'required',
-            'nama_dokter' => 'required',
+            'nama_diagnosa' => 'required',
             'tarif' => 'required',
 
         ]);
 
-        $dokter->kode = $request->kode;
-        $dokter->nama_dokter = $request->nama_dokter;
-        $dokter->tarif = $request->tarif;
-        $dokter->save();
+        $diagnosa->kode = $request->kode;
+        $diagnosa->nama_diagnosa = $request->nama_diagnosa;
+        $diagnosa->tarif = $request->tarif;
+        $diagnosa->save();
 
-        return redirect()->route('dokter.index')->with('success', 'dokter berhasil diperbarui.');
+        return redirect()->route('diagnosa.index')->with('success', 'diagnosa berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Diagnosa  $diagnosa
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $dokter = Dokter::find($id);
-        $dokter->delete();
+        $diagnosa = Diagnosa::find($id);
+        $diagnosa->delete();
 
-        return redirect()->route('dokter.index')->with('success', 'Data Dokter berhasil dihapus.');
+        return redirect()->route('diagnosa.index')->with('success', 'Data diagnosa berhasil dihapus.');
     }
 }

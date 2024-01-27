@@ -205,6 +205,10 @@
                                 class="
                         nav-item {{ Request::is('poli') ? 'menu-open' : '' }}
                         nav-item {{ Request::is('dokter') ? 'menu-open' : '' }}
+                        nav-item {{ Request::is('tindakan') ? 'menu-open' : '' }}
+                        nav-item {{ Request::is('diagnosa') ? 'menu-open' : '' }}
+                        nav-item {{ Request::is('administrasi') ? 'menu-open' : '' }}
+                        nav-item {{ Request::is('penunjang') ? 'menu-open' : '' }}
                         ">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-cogs"></i>
@@ -228,6 +232,42 @@
                                             class="nav-link {{ Request::is('dokter') ? 'active' : '' }}">
                                             <i class="fas fa-user nav-icon"></i>
                                             <p>Master Dokter</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('tindakan.index') }}"
+                                            class="nav-link {{ Request::is('tindakan') ? 'active' : '' }}">
+                                            <i class="fas fa-user nav-icon"></i>
+                                            <p>Master Tindakan</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('diagnosa.index') }}"
+                                            class="nav-link {{ Request::is('diagnosa') ? 'active' : '' }}">
+                                            <i class="fas fa-user nav-icon"></i>
+                                            <p>Master Diagnosa</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('administrasi.index') }}"
+                                            class="nav-link {{ Request::is('administrasi') ? 'active' : '' }}">
+                                            <i class="fas fa-user nav-icon"></i>
+                                            <p>Master Administrasi</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('penunjang.index') }}"
+                                            class="nav-link {{ Request::is('penunjang') ? 'active' : '' }}">
+                                            <i class="fas fa-user nav-icon"></i>
+                                            <p>Master Penunjang</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -378,13 +418,39 @@
         })
     </script>
 
-    {{-- input mata uang --}}
-
     <!-- Script untuk mengubah format input menjadi format mata uang Rupiah -->
     <script>
         $(document).ready(function() {
             // Fungsi untuk mengubah format input menjadi format mata uang Rupiah
             $('#tarif').on('input', function() {
+                // Mengambil nilai input
+                var inputValue = $(this).val();
+
+                // Menghapus karakter selain angka
+                inputValue = inputValue.replace(/[^0-9]/g, '');
+
+                // Format sebagai mata uang Rupiah
+                var formattedValue = formatRupiah(inputValue);
+
+                // Mengatur nilai input dengan format Rupiah
+                $(this).val(formattedValue);
+            });
+
+            $('#harga_modal').on('input', function() {
+                // Mengambil nilai input
+                var inputValue = $(this).val();
+
+                // Menghapus karakter selain angka
+                inputValue = inputValue.replace(/[^0-9]/g, '');
+
+                // Format sebagai mata uang Rupiah
+                var formattedValue = formatRupiah(inputValue);
+
+                // Mengatur nilai input dengan format Rupiah
+                $(this).val(formattedValue);
+            });
+
+            $('#harga_jual').on('input', function() {
                 // Mengambil nilai input
                 var inputValue = $(this).val();
 

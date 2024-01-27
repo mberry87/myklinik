@@ -40,9 +40,7 @@ class PoliController extends Controller
     {
         $validatedData = $request->validate([
             'kode' => 'required',
-            'nama' => 'required',
-
-
+            'nama_poli' => 'required',
         ]);
 
         Poli::create($validatedData);
@@ -97,12 +95,12 @@ class PoliController extends Controller
 
         $request->validate([
             'kode' => 'required',
-            'nama' => 'required',
+            'nama_poli' => 'required',
 
         ]);
 
         $poli->kode = $request->kode;
-        $poli->nama = $request->nama;
+        $poli->nama_poli = $request->nama_poli;
         $poli->save();
 
         return redirect()->route('poli.index')->with('success', 'poli berhasil diperbarui.');

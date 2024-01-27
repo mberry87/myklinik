@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Dokter')
+@section('title', 'Tambah Diagnosa')
 
 @section('breadcrumb')
     <div class="row mb-2">
         <div class="col col-md-6">
-            <h4 class="m-0">Tambah Dokter</h4>
+            <h4 class="m-0">Tambah Diagnosa</h4>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Tambah Dokter</li>
+                <li class="breadcrumb-item active">Tambah Diagnosa</li>
             </ol>
         </div>
     </div>
@@ -24,7 +24,7 @@
                     <h5 class="m-0">Tambah Data</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('dokter.store') }}" class="form-horizontal form-label-left" method="POST">
+                    <form action="{{ route('diagnosa.store') }}" class="form-horizontal form-label-left" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="kode">Kode</label>
@@ -35,11 +35,11 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="nama_dokter"> Dokter</label>
-                            <input type="text" name="nama_dokter" id="nama_dokter"
-                                class="form-control  @error('nama_dokter') is-invalid @enderror"
-                                value="{{ old('nama_dokter') }}">
-                            @error('nama_dokter')
+                            <label for="nama_diagnosa"> Nama Diagnosa</label>
+                            <input type="text" name="nama_diagnosa" id="nama_diagnosa"
+                                class="form-control  @error('nama_diagnosa') is-invalid @enderror"
+                                value="{{ old('nama_diagnosa') }}">
+                            @error('nama_diagnosa')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -53,7 +53,7 @@
                             @enderror
                         </div>
 
-                        <a href="{{ route('dokter.index') }}" class="btn btn-warning btn-sm">Kembali</a>
+                        <a href="{{ route('diagnosa.index') }}" class="btn btn-warning btn-sm">Kembali</a>
                         <button class="btn btn-info btn-sm" type="reset">Reset</button>
                         <button type="submit" class="btn btn-success btn-sm">Simpan</button>
                     </form>
