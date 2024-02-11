@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <link rel="stylesheet"
@@ -37,70 +38,79 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.11/dist/sweetalert2.min.css">
 
     <link rel="stylesheet" href="{{ asset('template') }}/dist/css/adminlte.min.css?v=3.2.0">
-    <script nonce="860543f9-e2cc-4eef-8734-25719429198f">
-        (function(w, d) {
-            ! function(a, b, c, d) {
-                a[c] = a[c] || {};
-                a[c].executed = [];
-                a.zaraz = {
-                    deferred: [],
-                    listeners: []
-                };
-                a.zaraz.q = [];
-                a.zaraz._f = function(e) {
-                    return function() {
-                        var f = Array.prototype.slice.call(arguments);
-                        a.zaraz.q.push({
-                            m: e,
-                            a: f
-                        })
-                    }
-                };
-                for (const g of ["track", "set", "debug"]) a.zaraz[g] = a.zaraz._f(g);
-                a.zaraz.init = () => {
-                    var h = b.getElementsByTagName(d)[0],
-                        i = b.createElement(d),
-                        j = b.getElementsByTagName("title")[0];
-                    j && (a[c].t = b.getElementsByTagName("title")[0].text);
-                    a[c].x = Math.random();
-                    a[c].w = a.screen.width;
-                    a[c].h = a.screen.height;
-                    a[c].j = a.innerHeight;
-                    a[c].e = a.innerWidth;
-                    a[c].l = a.location.href;
-                    a[c].r = b.referrer;
-                    a[c].k = a.screen.colorDepth;
-                    a[c].n = b.characterSet;
-                    a[c].o = (new Date).getTimezoneOffset();
-                    if (a.dataLayer)
-                        for (const n of Object.entries(Object.entries(dataLayer).reduce(((o, p) => ({
-                                ...o[1],
-                                ...p[1]
-                            })), {}))) zaraz.set(n[0], n[1], {
-                            scope: "page"
-                        });
-                    a[c].q = [];
-                    for (; a.zaraz.q.length;) {
-                        const q = a.zaraz.q.shift();
-                        a[c].q.push(q)
-                    }
-                    i.defer = !0;
-                    for (const r of [localStorage, sessionStorage]) Object.keys(r || {}).filter((t => t.startsWith(
-                        "_zaraz_"))).forEach((s => {
-                        try {
-                            a[c]["z_" + s.slice(7)] = JSON.parse(r.getItem(s))
-                        } catch {
-                            a[c]["z_" + s.slice(7)] = r.getItem(s)
+    <script nonce="2b2b1906-dcd4-4c8a-863c-5da4127316bc">
+        try {
+            (function(w, d) {
+                ! function(o, p, q, r) {
+                    o[q] = o[q] || {};
+                    o[q].executed = [];
+                    o.zaraz = {
+                        deferred: [],
+                        listeners: []
+                    };
+                    o.zaraz.q = [];
+                    o.zaraz._f = function(s) {
+                        return async function() {
+                            var t = Array.prototype.slice.call(arguments);
+                            o.zaraz.q.push({
+                                m: s,
+                                a: t
+                            })
                         }
-                    }));
-                    i.referrerPolicy = "origin";
-                    i.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(a[c])));
-                    h.parentNode.insertBefore(i, h)
-                };
-                ["complete", "interactive"].includes(b.readyState) ? zaraz.init() : a.addEventListener(
-                    "DOMContentLoaded", zaraz.init)
-            }(w, d, "zarazData", "script");
-        })(window, document);
+                    };
+                    for (const u of ["track", "set", "debug"]) o.zaraz[u] = o.zaraz._f(u);
+                    o.zaraz.init = () => {
+                        var v = p.getElementsByTagName(r)[0],
+                            w = p.createElement(r),
+                            x = p.getElementsByTagName("title")[0];
+                        x && (o[q].t = p.getElementsByTagName("title")[0].text);
+                        o[q].x = Math.random();
+                        o[q].w = o.screen.width;
+                        o[q].h = o.screen.height;
+                        o[q].j = o.innerHeight;
+                        o[q].e = o.innerWidth;
+                        o[q].l = o.location.href;
+                        o[q].r = p.referrer;
+                        o[q].k = o.screen.colorDepth;
+                        o[q].n = p.characterSet;
+                        o[q].o = (new Date).getTimezoneOffset();
+                        if (o.dataLayer)
+                            for (const B of Object.entries(Object.entries(dataLayer).reduce(((C, D) => ({
+                                    ...C[1],
+                                    ...D[1]
+                                })), {}))) zaraz.set(B[0], B[1], {
+                                scope: "page"
+                            });
+                        o[q].q = [];
+                        for (; o.zaraz.q.length;) {
+                            const E = o.zaraz.q.shift();
+                            o[q].q.push(E)
+                        }
+                        w.defer = !0;
+                        for (const F of [localStorage, sessionStorage]) Object.keys(F || {}).filter((H => H
+                            .startsWith("_zaraz_"))).forEach((G => {
+                            try {
+                                o[q]["z_" + G.slice(7)] = JSON.parse(F.getItem(G))
+                            } catch {
+                                o[q]["z_" + G.slice(7)] = F.getItem(G)
+                            }
+                        }));
+                        w.referrerPolicy = "origin";
+                        w.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(o[q])));
+                        v.parentNode.insertBefore(w, v)
+                    };
+                    ["complete", "interactive"].includes(p.readyState) ? zaraz.init() : o.addEventListener(
+                        "DOMContentLoaded", zaraz.init)
+                }(w, d, "zarazData", "script");
+            })(window, document)
+        } catch (err) {
+            console.error('Failed to run Cloudflare Zaraz: ', err)
+            fetch('/cdn-cgi/zaraz/t', {
+                credentials: 'include',
+                keepalive: true,
+                method: 'GET',
+            })
+        };
     </script>
 </head>
 
@@ -172,45 +182,25 @@
                         data-accordion="false">
                         <li class="nav-item ">
                             <a href="{{ route('dashboard') }}"
-                                class="nav-link nav-link {{ Request::is('dashboard') ? 'active' : 'inactive' }}">
+                                class="nav-link {{ Request::is('dashboard') ? 'active' : 'inactive' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>DASHBOARD</p>
                             </a>
                         </li>
-                        <li
-                            class="
-                            nav-item {{ Request::is('spb') ? 'menu-open' : '' }}
-                            ">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    PASIEN
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
+                        <li class="nav-item ">
+                            <a href="{{ route('pasien') }}"
+                                class="nav-link {{ Request::is('pasien') ? 'active' : 'inactive' }}">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>PASIEN</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="" class="nav-link {{ Request::is('#') ? 'active' : '' }}">
-                                        <i class="fas fa-file nav-icon"></i>
-                                        <p>List Pasien</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
 
                         <!-- Master Data -->
                         @can('viewAny', App\User::class)
                             <li
-                                class="
-                        nav-item {{ Request::is('poli') ? 'menu-open' : '' }}
-                        nav-item {{ Request::is('dokter') ? 'menu-open' : '' }}
-                        nav-item {{ Request::is('tindakan') ? 'menu-open' : '' }}
-                        nav-item {{ Request::is('diagnosa') ? 'menu-open' : '' }}
-                        nav-item {{ Request::is('administrasi') ? 'menu-open' : '' }}
-                        nav-item {{ Request::is('penunjang') ? 'menu-open' : '' }}
-                        ">
-                                <a href="#" class="nav-link">
+                                class="nav-item {{ Request::is('poli', 'dokter', 'tindakan', 'diagnosa', 'administrasi', 'penunjang', 'obat') ? 'menu-open' : '' }}">
+                                <a href="#"
+                                    class="nav-link {{ Request::is('poli', 'dokter', 'tindakan', 'diagnosa', 'administrasi', 'penunjang', 'obat') ? 'active' : 'inactive' }}">
                                     <i class="nav-icon fas fa-cogs"></i>
                                     <p>
                                         MASTER DATA
@@ -271,16 +261,22 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('obat.index') }}"
+                                            class="nav-link {{ Request::is('obat') ? 'active' : '' }}">
+                                            <i class="fas fa-user nav-icon"></i>
+                                            <p>Master Obat</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         @endcan
 
                         @can('viewAny', App\User::class)
-                            <li
-                                class="
-                        nav-item {{ Request::is('pegawai') ? 'menu-open' : '' }}
-                        nav-item {{ Request::is('user') ? 'menu-open' : '' }}
-                        ">
-                                <a href="#" class="nav-link">
+                            <li class="nav-item {{ Request::is('user', 'pegawai') ? 'menu-open' : '' }}">
+                                <a href="#"
+                                    class="nav-link {{ Request::is('user', 'pegawai') ? 'active' : 'inactive' }}">
                                     <i class="nav-icon fas fa-cogs"></i>
                                     <p>
                                         MANAGEMENT
@@ -305,7 +301,6 @@
                                 </ul>
                             </li>
                         @endcan
-
                     </ul>
                 </nav>
 
@@ -375,6 +370,7 @@
     <script src="{{ asset('template') }}/dist/js/adminlte.min.js?v=3.2.0"></script>
 
 
+
     <script>
         $(function() {
             $("#example1").DataTable({
@@ -407,9 +403,16 @@
 
             //Date picker
 
+            $(function() {
+                $('#date_exp').datetimepicker({
+
+                    format: ('DD/MM/YYYY'),
+                    locale: 'id',
+                });
+            })
 
             $(function() {
-                $('#tanggal').datetimepicker({
+                $('#tgl_lahir').datetimepicker({
 
                     format: ('DD/MM/YYYY'),
                     locale: 'id',
@@ -421,46 +424,24 @@
     <!-- Script untuk mengubah format input menjadi format mata uang Rupiah -->
     <script>
         $(document).ready(function() {
-            // Fungsi untuk mengubah format input menjadi format mata uang Rupiah
             $('#tarif').on('input', function() {
-                // Mengambil nilai input
                 var inputValue = $(this).val();
-
-                // Menghapus karakter selain angka
                 inputValue = inputValue.replace(/[^0-9]/g, '');
-
-                // Format sebagai mata uang Rupiah
                 var formattedValue = formatRupiah(inputValue);
-
-                // Mengatur nilai input dengan format Rupiah
                 $(this).val(formattedValue);
             });
 
             $('#harga_modal').on('input', function() {
-                // Mengambil nilai input
                 var inputValue = $(this).val();
-
-                // Menghapus karakter selain angka
                 inputValue = inputValue.replace(/[^0-9]/g, '');
-
-                // Format sebagai mata uang Rupiah
                 var formattedValue = formatRupiah(inputValue);
-
-                // Mengatur nilai input dengan format Rupiah
                 $(this).val(formattedValue);
             });
 
             $('#harga_jual').on('input', function() {
-                // Mengambil nilai input
                 var inputValue = $(this).val();
-
-                // Menghapus karakter selain angka
                 inputValue = inputValue.replace(/[^0-9]/g, '');
-
-                // Format sebagai mata uang Rupiah
                 var formattedValue = formatRupiah(inputValue);
-
-                // Mengatur nilai input dengan format Rupiah
                 $(this).val(formattedValue);
             });
 
@@ -472,6 +453,39 @@
                 return 'Rp ' + formatted;
             }
         });
+    </script>
+
+    <script>
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(function() {
+                $('#provinsi').on('change', function() {
+                    let id_provinsi = $('#provinsi').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('getKabupaten') }}",
+                        data: {
+                            id_provinsi: id_provinsi
+                        },
+                        cache: false,
+
+                        success: function(msg) {
+                            $('#kabupaten').html(msg);
+                        },
+
+                        error: function(data) {
+                            console.log('error', data);
+                        }
+                    })
+                });
+            });
+        })
     </script>
 
     {{-- <script>

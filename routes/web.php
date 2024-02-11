@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DashboardCotroller;
 use App\Http\Controllers\DiagnosaController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\ObatCotroller;
+use App\Http\Controllers\PasienContreller;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PenunjangController;
 use App\Http\Controllers\PoliController;
@@ -101,6 +103,21 @@ Route::middleware('islogin')->group(function () {
     Route::put('penunjang/{id}', [PenunjangController::class, 'update'])->name('penunjang.update');
     Route::delete('penunjang/{id}', [PenunjangController::class, 'destroy'])->name('penunjang.destroy');
 
+    Route::get('obat', [ObatCotroller::class, 'index'])->name('obat.index');
+    Route::get('create/obat', [ObatCotroller::class, 'create'])->name('obat.create');
+    Route::post('obat', [ObatCotroller::class, 'store'])->name('obat.store');
+    Route::get('obat/{id}/edit', [ObatCotroller::class, 'edit'])->name('obat.edit');
+    Route::put('obat/{id}', [ObatCotroller::class, 'update'])->name('obat.update');
+    Route::delete('obat/{id}', [ObatCotroller::class, 'destroy'])->name('obat.destroy');
+
+    Route::get('pasien', [PasienContreller::class, 'index'])->name('pasien');
+    Route::get('create/pasien', [PasienContreller::class, 'create'])->name('pasien.create');
+    Route::post('pasien', [PasienContreller::class, 'store'])->name('pasien.store');
+    Route::get('pasien/{id}/edit', [PasienContreller::class, 'edit'])->name('pasien.edit');
+    Route::put('pasien/{id}', [PasienContreller::class, 'update'])->name('pasien.update');
+    Route::delete('pasien/{id}', [PasienContreller::class, 'destroy'])->name('pasien.destroy');
+
+    Route::post('/getKabupaten', [PasienContreller::class, 'getKabupaten'])->name('getKabupaten');
 
     // profil
     Route::get('profil', [ProfilController::class, 'index'])->name('profil.index');
