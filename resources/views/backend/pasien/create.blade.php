@@ -175,13 +175,32 @@
                                     <label for="kab">Kabupaten</label>
                                     <select class="form-control select2bs4" id="kabupaten" name="kab">
                                         <option value="">-- Silahkan Pilih -- </option>
-                                        {{-- @foreach ($kabupatens as $kabupaten)
-                                            <option
-                                                value="{{ $kabupaten->id }}"{{ old('prov') == $kabupaten->id ? 'selected' : '' }}>
-                                                {{ $kabupaten->name }}</option>
-                                        @endforeach --}}
                                     </select>
                                     @error('kab')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-6">
+                                <div class="form-group">
+                                    <label for="kec">Kecamatan</label>
+                                    <select class="form-control select2bs4" id="kecamatan" name="kec">
+                                        <option value="">-- Silahkan Pilih -- </option>
+                                    </select>
+                                    @error('kec')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col col-md-6">
+                                <div class="form-group">
+                                    <label for="kel">Kelurahan</label>
+                                    <select class="form-control select2bs4" id="kelurahan" name="kel">
+                                        <option value="">-- Silahkan Pilih -- </option>
+                                    </select>
+                                    @error('kel')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
