@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'faker_locale' => env('LOCALE_FAKER','en_US'),
+    'faker_locale' => env('LOCALE_FAKER', 'en_US'),
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +163,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        // Provider Lain
+        AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
 
         /*
          * Package Service Providers...
