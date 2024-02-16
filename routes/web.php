@@ -110,7 +110,7 @@ Route::middleware('islogin')->group(function () {
     Route::put('obat/{id}', [ObatCotroller::class, 'update'])->name('obat.update');
     Route::delete('obat/{id}', [ObatCotroller::class, 'destroy'])->name('obat.destroy');
 
-    Route::get('pasien', [PasienContreller::class, 'index'])->name('pasien');
+    Route::get('pasien', [PasienContreller::class, 'index'])->name('pasien.index');
     Route::get('create/pasien', [PasienContreller::class, 'create'])->name('pasien.create');
     Route::post('pasien', [PasienContreller::class, 'store'])->name('pasien.store');
     Route::get('pasien/{id}/edit', [PasienContreller::class, 'edit'])->name('pasien.edit');
@@ -118,6 +118,8 @@ Route::middleware('islogin')->group(function () {
     Route::delete('pasien/{id}', [PasienContreller::class, 'destroy'])->name('pasien.destroy');
 
     Route::post('/getKabupaten', [PasienContreller::class, 'getKabupaten'])->name('getKabupaten');
+    Route::post('/getKecamatan', [PasienContreller::class, 'getkecamatan'])->name('getKecamatan');
+    Route::post('/getKelurahan', [PasienContreller::class, 'getKelurahan'])->name('getKelurahan');
 
     // profil
     Route::get('profil', [ProfilController::class, 'index'])->name('profil.index');
