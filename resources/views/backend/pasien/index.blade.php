@@ -43,6 +43,7 @@
                                 <th>Jensi Kelamin</th>
                                 <th>No.Telepon</th>
                                 <th>Pekerjaan</th>
+                                <th>Prov</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -58,6 +59,7 @@
                                     <td>{{ $data->jenis_kelamin }}</td>
                                     <td>{{ $data->no_tlp }}</td>
                                     <td>{{ $data->pekerjaan }}</td>
+                                    <td>{{ $data->provinces }}</td>
                                     <td>
                                         <a href="{{ route('obat.edit', $data) }}" class="btn btn-primary btn-sm"><i
                                                 class="fa fa-pen"></i>

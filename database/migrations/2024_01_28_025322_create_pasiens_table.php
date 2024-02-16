@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('no_bpjs')->nullable();
             $table->string('nama_pasien');
             $table->string('jenis_kelamin');
-            $table->date('tgl_lahir');
+            $table->string('tgl_lahir');
             $table->string('alamat')->nullable();
             $table->string('no_tlp')->nullable();
             $table->string('pekerjaan');

@@ -188,7 +188,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="{{ route('pasien') }}"
+                            <a href="{{ route('pasien.index') }}"
                                 class="nav-link {{ Request::is('pasien') ? 'active' : 'inactive' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>PASIEN</p>
@@ -477,6 +477,54 @@
 
                         success: function(msg) {
                             $('#kabupaten').html(msg);
+                            $('#kecamatan').html('');
+                            $('#kelurahan').html('');
+                        },
+
+                        error: function(data) {
+                            console.log('error', data);
+                        }
+                    })
+                });
+            });
+
+            $(function() {
+                $('#kabupaten').on('change', function() {
+                    let id_kabupaten = $('#kabupaten').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('getKecamatan') }}",
+                        data: {
+                            id_kabupaten: id_kabupaten
+                        },
+                        cache: false,
+
+                        success: function(msg) {
+                            $('#kecamatan').html(msg);
+                        },
+
+                        error: function(data) {
+                            console.log('error', data);
+                        }
+                    })
+                });
+            });
+
+            $(function() {
+                $('#kecamatan').on('change', function() {
+                    let id_kecamatan = $('#kecamatan').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('getKelurahan') }}",
+                        data: {
+                            id_kecamatan: id_kecamatan
+                        },
+                        cache: false,
+
+                        success: function(msg) {
+                            $('#kelurahan').html(msg);
                         },
 
                         error: function(data) {

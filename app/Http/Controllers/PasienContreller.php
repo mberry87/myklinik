@@ -21,8 +21,9 @@ class PasienContreller extends Controller
     {
         // hubungkan data migration
         $pasien = Pasien::all();
+        $provinces = Province::all();
 
-        return view('backend.pasien.index', compact('pasien'));
+        return view('backend.pasien.index', compact('pasien', 'provinces'));
     }
 
     /**
@@ -37,7 +38,7 @@ class PasienContreller extends Controller
         return view('backend.pasien.create', compact('provinces'));
     }
 
-    public function getkabupaten(Request $request)
+    public function getKabupaten(Request $request)
     {
         $id_provinsi = $request->id_provinsi;
 
@@ -47,8 +48,30 @@ class PasienContreller extends Controller
             $selected = old('kab') == $kabupaten->id ? 'selected' : ''; // Tentukan opsi terpilih berdasarkan nilai old
             echo "<option value='$kabupaten->id' $selected>$kabupaten->name</option>"; // Masukkan opsi terpilih ke dalam tag option
         }
+    }
 
-        // Jika Anda ingin memberikan respons dalam bentuk JSON
+    public function getKecamatan(Request $request)
+    {
+        $id_kabupaten = $request->id_kabupaten;
+
+        $kecamatans = District::where('regency_id', $id_kabupaten)->get();
+
+        foreach ($kecamatans as $kecamatan) {
+            $selected = old('kec') == $kecamatan->id ? 'selected' : ''; // Tentukan opsi terpilih berdasarkan nilai old
+            echo "<option value='$kecamatan->id' $selected>$kecamatan->name</option>"; // Masukkan opsi terpilih ke dalam tag option
+        }
+    }
+
+    public function getKelurahan(Request $request)
+    {
+        $id_kecamatan = $request->id_kecamatan;
+
+        $kelurahans = Village::where('district_id', $id_kecamatan)->get();
+
+        foreach ($kelurahans as $kelurahan) {
+            $selected = old('kec') == $kelurahan->id ? 'selected' : ''; // Tentukan opsi terpilih berdasarkan nilai old
+            echo "<option value='$kelurahan->id' $selected>$kelurahan->name</option>"; // Masukkan opsi terpilih ke dalam tag option
+        }
     }
 
     /**
